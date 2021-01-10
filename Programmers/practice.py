@@ -1,30 +1,23 @@
-
-board = [[0,0,0,0,0],[0,0,1,0,3],[0,2,5,0,1],[4,2,4,4,2],[3,5,1,3,1]]
-
-moves = [1,5,3,5,1,2,1,4]
-def solution(board, moves):
-
-    result=[]
+def solution(skill, skill_trees):
     answer = 0
 
-    for i in moves:
-        j = 0
-        while board[j][i - 1] == 0 and j < len(board)-1:
-            j += 1
-        if board[j][i - 1] != 0:
-            add_val = board[j][i - 1]
-            board[j][i - 1] = 0
-            if len(result)!=0 :  # result에 요소가 최소 한개이상 있을때
-                result_top = result.pop()  # 맨 위 요소 확인
-                if result_top != add_val:  # 맨 위 요소가 추가 요소와 다를때
-                    result.append(result_top)
-                    result.append(add_val)
+    skill_list = list(skill)
 
-                else:   # 맨 위 요소가 추가 요소와 같을때
-                    answer += 2
-            else:
-                result.append(add_val)
-    return answer
+    for a_skill in skill_trees:
+        print(a_skill)
+        index = 0
+        for j in range(len(a_skill)):
+            if a_skill[j] in skill_list:
+                if skill_list.index(a_skill[j]) > index:
+                    index = skill_list.index(a_skill[j])
+                else:
+                    break
 
-print(solution(board, moves))
+        answer += 1
 
+    return skill_list
+
+
+skill = 'CBD'
+skill_trees = ["BACDE", "CBADF", "AECB", "BDA"]
+print('skill_list = ', solution(skill, skill_trees))

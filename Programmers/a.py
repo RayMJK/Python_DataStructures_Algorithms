@@ -1,19 +1,52 @@
-def solution(skill, skill_trees):
-    answer = 0
-
-    for skills in skill_trees:
-        skill_list = list(skill)
-
-        for s in skills:
-            if s in skill:
-                if s != skill_list.pop(0):
-                    break
-        else:
-            answer += 1
-
-    return answer
+balance=897.32
+print("    ATM    ")
+print("""
+1)        Balance
+2)        Withdraw
+3)        Deposit
+4)        Quit
 
 
-skill = 'CBD'
-skill_trees =["BACDE", "CBADF", "AECB", "BDA"]
-print(solution(skill, skill_trees))
+""")
+Option=int(input("Enter Option: "))
+
+if Option==1:
+    print("Balance  £ ",balance)
+
+
+if Option==2:
+    print("Balance  £  ",balance)
+    Withdraw=float(input("Enter Withdraw amount £ "))
+    if Withdraw>0:
+        forewardbalance=(balance-Withdraw)
+        print("Foreward Balance  £ ",forewardbalance)
+    elif Withdraw>balance:
+        print("No funs in account")
+    else:
+        print("None withdraw made")
+
+if Option==3:
+    print("Balance  £ ",balance)
+    Deposit=float(input("Enter deposit amount £ "))
+    if Deposit>0:
+        forewardbalance=(balance+Deposit)
+        print("Forewardbalance  £ ",forewardbalance)
+    else:
+        print("None deposit made")
+
+
+if Option==4:
+    exit()
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,2 @@
-arr = []
-check = []
-arr.reverse()
-print(arr==check)
+a = set()
+print(a)

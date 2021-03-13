@@ -1,4 +1,4 @@
-def twoSum(self, nums, target): #Hash Table
+def twoSum(nums, target): #Hash Table
     """
     :type nums: List[int]
     :type target: int

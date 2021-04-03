@@ -1,1 +1,5 @@
-print([1,2]+[3,4])
+a = 7
+print(type(a))
+b = bin(a)
+print(b)
+print(type(b))

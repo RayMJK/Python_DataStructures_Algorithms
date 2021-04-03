@@ -1,4 +1,5 @@
-d = [1,4,2]
-d.sort()
+value = 4
 
-print(d)
+b = format(value, 'b')
+print(b)
+print(type(b))

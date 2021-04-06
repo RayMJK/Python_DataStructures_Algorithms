@@ -1,4 +1,3 @@
-a = '119'
-b = '119454'
-if a in b:
-    print('true')
+a = [["yellowhat", "headgear"], ["bluesunglasses", "eyewear"], ["green_turban", "headgear"]]
+b = sorted(a, key=lambda x:x[1])
+print(b)

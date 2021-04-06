@@ -1,18 +1,15 @@
-from string import ascii_lowercase
+def solution(clothes):
+    answer = {}
+    for i in clothes:
+        if i[1] in answer: 
+            answer[i[1]] += 1
+        else: answer[i[1]] = 1
+    print(answer)
+    count = 1
+    for i in answer.values():
+        print(i)
+        count *= (i+1)
 
+    return count - 1
 
-def solution(new_id):
-    answer = ''
-    new_id.lower()  # step 1
-    id_list = list(ascii_lowercase)
-    id_list.append('-')
-    id_list.append('_')
-    id_list.append('.')
-    new_id.replace('.', ' ')  # step 3
-    for i in range(len(new_id)):
-        if new_id[i] not in id_list:  # step 2
-            new_id = new_id.replace(new_id[i], ' ')
-    if len(new_id) == 0:  # step 5
-        new_id = 'a'
-
-    return answer
+print(solution([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]))

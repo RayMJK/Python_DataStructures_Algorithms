@@ -3,7 +3,7 @@ from string import ascii_lowercase
 
 def solution(new_id):
     answer = ''
-    new_id.lower()  # step 1
+    new_id = new_id.lower()  # step 1
     num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ]
 
     id_list = list(ascii_lowercase)
@@ -26,15 +26,13 @@ def solution(new_id):
         answer += b[i]
         if i != len(b) - 1:
             answer += '.'
-    if len(answer) >= 16:
+    if len(answer) >= 16: # step 6
         answer = answer[:15]
         if answer[-1] == '.':
-            answer = answer.replace(answer[-1], '')
+            answer = answer[:-1]
     if len(answer) == 0:
         return 'aaa'
-    elif len(answer) <= 2:
+    elif len(answer) <= 2: # step 7
         answer += answer[-1] * (3 - len(answer))
 
     return answer
-
-print(solution("...!@BaT#*..y.abcdefghijklm"))

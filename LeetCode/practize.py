@@ -1,15 +1,24 @@
-def solution(clothes):
-    answer = {}
-    for i in clothes:
-        if i[1] in answer: 
-            answer[i[1]] += 1
-        else: answer[i[1]] = 1
-    print(answer)
-    count = 1
-    for i in answer.values():
-        print(i)
-        count *= (i+1)
+from itertools import permutations
+import math
+def check(n):
+    k = math.sqrt(n)
+    if n < 2:
+        return False
 
-    return count - 1
+    for i in range(2, int(k)+1):
+        if n % i == 0:
+            return False
+    return True
+def solution(numbers):
+    answer = []
+    for k in range(1, len(numbers)+1):
+        perlist = list(map(''.join, permutations(list(numbers), k)))
+        print(perlist)
+        for i in list(set(perlist)):
+            if check(int(i)):
+                answer.append(int(i))
 
-print(solution([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]))
+    answer = len(set(answer))
+
+    return answer
+print(solution('17'))

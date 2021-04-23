@@ -1,7 +1,9 @@
-a = ["119", "97674223", "1195524421"]
+a =[3, 30, 34, 5, 9]
 
-for i in range(len(a)):
-    print(a[i])
-    for j in a[i+1:] :
-        if a[i] in j:
-            print('false')
+a = list(map(str, a))
+print(a)
+
+a.sort(key= lambda x : x*3, reverse = True)
+print(a)
+
+print(str(int(''.join(a))))

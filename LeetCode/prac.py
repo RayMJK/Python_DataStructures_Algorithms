@@ -1,23 +1,22 @@
-from itertools import permutations
-import math
-def check(n):
-    k = math.sqrt(n)
-    if n < 2:
-        return False
+# Name : Myung Joon Kim (김명준)
+# School : Pennsylvania State University
 
-    for i in range(2, int(k)+1):
-        if n % i == 0:
-            return False
-    return True
-def solution(numbers):
-    answer = []
-    for k in range(1, len(numbers)+1):
-        perlist = list(map(''.join, permutations(list(numbers), k)))
-        print(perlist)
-        for i in list(set(perlist)):
-            if check(int(i)):
-                answer.append(int(i))
+data = []
+while True:
+    d = input()
+    data.append(d)
+print(data)
 
-    answer = len(set(answer))
+# the number of stars
+s = 0
+for i in data:
+    if i == "":
+        print()
+        s = 0
+        continue
 
-    return answer
+    m = i.count("*")
+    print("." * (len(i) - m - s), end="")
+    print("*" * m, end="")
+    print("." * s)
+    s += m

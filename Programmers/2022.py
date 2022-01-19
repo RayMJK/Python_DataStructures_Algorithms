@@ -1,14 +1,15 @@
-def solution(priorities, location):
-    queue =  [(i,p) for i,p in enumerate(priorities)]
-    print(queue)
+def solution(bridge_length, weight, truck_weights):
     answer = 0
-    while True:
-        cur = queue.pop(0)
-        if any(cur[1] < q[1] for q in queue):
-            queue.append(cur)
-        else:
-            answer += 1
-            if cur[0] == location:
-                return answer
+    bridge = [0] * bridge_length
 
-print(solution([2, 1, 3, 2], 2))
+    time = 0
+    while bridge:
+        bridge.pop(0)
+        time += 1
+        if truck_weights:
+            if (sum(bridge) + truck_weights[0]) <= weight:
+                bridge.append(truck_weights.pop(0))
+            else:
+                bridge.append(0)
+
+    return time

@@ -10,4 +10,3 @@ def solution(priorities, location):
             answer += 1
             if cur[0] == location:
                 return answer
-            

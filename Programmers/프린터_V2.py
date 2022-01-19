@@ -1,5 +1,5 @@
 def solution(priorities, location):
-    queue =  [(i,p) for i,p in enumerate(priorities)]
+    queue = [(i,p) for i,p in enumerate(priorities)]
     print(queue)
     answer = 0
     while True:
@@ -10,5 +10,4 @@ def solution(priorities, location):
             answer += 1
             if cur[0] == location:
                 return answer
-
-print(solution([2, 1, 3, 2], 2))
+            

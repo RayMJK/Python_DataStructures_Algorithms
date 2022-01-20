@@ -13,7 +13,6 @@ def solution(prices):
                 flag = 0
                 #print(i, j-i)
                 answer.append(j-i)
-                stack.pop()
                 break
             else:
                 a+=1

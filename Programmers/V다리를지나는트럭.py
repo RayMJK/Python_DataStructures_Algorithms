@@ -1,15 +1,14 @@
 def solution(bridge_length, weight, truck_weights):
     answer = 0
-    bridge = [0] * bridge_length
-
-    time = 0
-    while bridge:
-        bridge.pop(0)
-        time += 1
+    trucks_on_bridge = [0] * bridge_length
+    #print(trucks_on_bridge)
+    
+    while len(trucks_on_bridge):
+        answer += 1
+        trucks_on_bridge.pop(0)
         if truck_weights:
-            if (sum(bridge) + truck_weights[0]) <= weight:
-                bridge.append(truck_weights.pop(0))
+            if sum(trucks_on_bridge) + truck_weights[0] <= weight:
+                trucks_on_bridge.append(truck_weights.pop(0))
             else:
-                bridge.append(0)
-
-    return time
+                trucks_on_bridge.append(0)
+    return answer

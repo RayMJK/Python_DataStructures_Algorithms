@@ -1,15 +1,13 @@
-def solution(bridge_length, weight, truck_weights):
+import heapq
+def solution(scoville, K):
     answer = 0
-    bridge = [0] * bridge_length
+    heapq.heapify(scoville)
 
-    time = 0
-    while bridge:
-        bridge.pop(0)
-        time += 1
-        if truck_weights:
-            if (sum(bridge) + truck_weights[0]) <= weight:
-                bridge.append(truck_weights.pop(0))
-            else:
-                bridge.append(0)
+    while scoville[0] < K:
+        answer += 1
+        scov = heapq.heappop(scoville) + (heapq.heappop(scoville) * 2)
+        heapq.heappush(scoville, scov)
 
-    return time
+        if len(scoville) == 1 and scoville[0] < K:
+            return -1
+    return answer

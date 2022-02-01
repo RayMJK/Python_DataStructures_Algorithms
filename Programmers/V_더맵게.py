@@ -4,9 +4,9 @@ def solution(scoville, K):
     heapq.heapify(scoville)
 
     while scoville[0] < K:
-        answer += 1
-        scov = heapq.heappop(scoville) + (heapq.heappop(scoville) * 2)
+        scov = heapq.heappop(scoville) + heapq.heappop(scoville) * 2
         heapq.heappush(scoville, scov)
+        answer += 1
 
         if len(scoville) == 1 and scoville[0] < K:
             return -1

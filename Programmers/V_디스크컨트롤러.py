@@ -1,6 +1,4 @@
 import heapq
-
-
 def solution(jobs):
     answer = 0
     now = 0

@@ -1,3 +1,1 @@
-def solution(operations):
-    answer = []
-    return answer
+I 16

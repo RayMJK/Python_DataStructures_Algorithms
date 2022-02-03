@@ -1,13 +1,24 @@
 import heapq
-def solution(scoville, K):
+
+
+def solution(jobs):
     answer = 0
-    heapq.heapify(scoville)
+    now = 0
+    i = 0
+    start = -1
+    heap = []
 
-    while scoville[0] < K:
-        answer += 1
-        scov = heapq.heappop(scoville) + (heapq.heappop(scoville) * 2)
-        heapq.heappush(scoville, scov)
+    while i < len(jobs):
+        for j in jobs:
+            if start < j[0] <= now:
+                heapq.heappush(heap, [j[1], j[0]])
+        if len(heap) > 0:
+            current = heapq.heappop(heap)
+            start = now
+            now += current[0]
+            answer += now - current[1]
+            i += 1
+        else:
+            now += 1
 
-        if len(scoville) == 1 and scoville[0] < K:
-            return -1
-    return answer
+    return answer // len(jobs)

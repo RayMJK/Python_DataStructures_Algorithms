@@ -1,25 +1,19 @@
-from itertools import permutations
-import math
-
-
-def check(n):
-    k = math.sqrt(n)
-    if n < 2:
-        return False
-    for i in range(2, int(k) + 1):
-        if n % i == 0:
-            return False
-    return True
-
-
-def solution(numbers):
+def solution(brown, yellow):
     answer = []
-    for k in range(1, len(numbers) + 1):
-        perlist = list(map(''.join, permutations(list(numbers), k)))
-        # print(perlist)
-        for i in list(set(perlist)):
-            if check(int(i)):
-                answer.append(int(i))
+    # print(brown, yellow)
+    for i in range(1, yellow + 1):
+        if yellow % i == 0:
+            width = i
+            length = yellow // i
+            # print(width, length)
 
-    answer = len(set(answer))
+        if 2 * (length + 2) + width * 2 == brown:
+            print(width, length)
+            if width < length:
+                pass
+            else:
+                answer.append(width + 2)
+                answer.append(length + 2)
+                break
+
     return answer

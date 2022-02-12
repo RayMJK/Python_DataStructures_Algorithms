@@ -7,5 +7,7 @@ def solution(n, costs):
         a = []
         for j in range(len(costs)):
             if i == j[0]:
+
+                
                 
     return answer

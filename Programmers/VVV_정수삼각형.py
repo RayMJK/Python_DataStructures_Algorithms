@@ -9,5 +9,6 @@ def solution(triangle):
                 triangle[i][j] += triangle[i-1][j-1]
             else:
                 triangle[i][j] += max(triangle[i-1][j], triangle[i-1][j-1])
+
     answer = max(triangle[-1])
     return answer

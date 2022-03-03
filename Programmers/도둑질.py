@@ -8,5 +8,6 @@ def solution(money):
             b.append(money[j])
         answer.append(a+max(b))
     #print(answer)
+    
     result = max(answer)
     return result

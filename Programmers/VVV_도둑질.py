@@ -1,19 +1,20 @@
 def solution(money):
     answer = 0
+    # 첫 번째 집을 털었을때 = > 마지막집 털지 않음
     dp1 = [0] * len(money)
-    dp2 = [0] * len(money)
-    # print(dp1, dp2)
-
-    # 1번집을 터는 경우 => 마지막 집 제외
-    # 2번 부터 마지막 바로 전 집까지.
     dp1[0] = money[0]
-    for i in range(1, len(money) - 1):
+    dp1[1] = max(money[0], money[1])
+
+    for i in range(2, len(money) - 1):
         dp1[i] = max(dp1[i - 1], dp1[i - 2] + money[i])
 
-    # 1번 집을 안 터는 경우 => 2번부터 마지막집까지.
+    # 첫번째 집 털지 않았을때 => 마지막집 까지.
+    dp2 = [0] * len(money)
     dp2[0] = 0
-    for i in range(1, len(money)):
+    dp2[1] = money[1]
+
+    for i in range(2, len(money)):
         dp2[i] = max(dp2[i - 1], dp2[i - 2] + money[i])
 
-    answer = max(dp1[-2], dp2[-1])
+    answer = max(max(dp1), max(dp2))
     return answer

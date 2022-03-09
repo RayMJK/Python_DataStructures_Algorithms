@@ -1,4 +1,4 @@
 def solution(n, computers):
-    answer = 0
 
+    answer = 0
     return answer

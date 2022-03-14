@@ -1,5 +1,5 @@
 def solution(n, computers):
-    answer = 0
+    a = 0
     #print(computers)
     for i in range(len(computers)):
         print(i)
@@ -7,5 +7,7 @@ def solution(n, computers):
             if j == i:
                 continue
             if computers[i][j] == 1:
-                answer += 1
-    return n - answer
+                a += 1
+    print(a)
+    answer = n-a
+    return answer

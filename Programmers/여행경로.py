@@ -1,5 +1,10 @@
 def solution(tickets):
     answer = []
-    for i in tickets:
-        print(i)
+    tickets.sort()
+    print(tickets)
+    for i in range(len(tickets)):
+        if tickets[i][0] == 'ICN':
+            print(i)
+            answer.append(i)
+    print(answer)
     return answer

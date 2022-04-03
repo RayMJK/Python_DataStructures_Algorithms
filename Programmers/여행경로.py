@@ -1,4 +1,5 @@
 def solution(tickets):
     answer = []
-    print(tickets)
+    for i in tickets:
+        print(i)
     return answer

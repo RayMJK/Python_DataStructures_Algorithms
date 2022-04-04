@@ -1,29 +1,30 @@
 def solution(tickets):
+    answer = []
     # 1. 그래프 생성
-    routes = dict()
-
+    way = dict()
+    
+    # 2. 시작점 - [끝점] 역순으로 정렬
     for (start, end) in tickets:
-        if routes.get(start) is None:
-            routes[start] = [end]
+        if way.get(start) is None:
+            way[start] = [end]
         else:
-            routes[start] += [end]
-        print(routes)
-    # 2. 시작점 - [끝점] 역순으로 정렬    
-    for r in routes.keys():
-        routes[r].sort(reverse=True)
-    # print(routes)
+            way[start] += [end]
+    
+    for start in way.keys():
+        way[start].sort(reverse=True)
+    
     # 3. DFS 알고리즘으로 path를 만들어줌.
-    st = ["ICN"]
+    stack = ["ICN"]
     path = []
     
-    while st:
-        top = st[-1]
-        if top not in routes or len(routes[top]) == 0:
-            path.append(st.pop())
+    while stack:
+        top = stack[-1]
+        if top not in way or len(way[top]) == 0:
+            path.append(stack.pop())
         else:
-            st.append(routes[top][-1])
-            routes[top] = routes[top][:-1]
-            
+            stack.append(way[top][-1])
+            way[top] = way[top][:-1]
+    
     # 4. 만든 path를 거꾸로 돌림.
     answer = path[::-1]
     return answer

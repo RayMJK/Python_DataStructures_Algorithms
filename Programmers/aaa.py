@@ -1,6 +1,15 @@
-def solution(numbers, target):
-    answer = 0
+import heapq
 
-    for i in range(len(numbers)):
-        print(numbers[i])
+
+def solution(scoville, K):
+    answer = 0
+    heapq.heapify(scoville)
+
+    while scoville[0] < K:
+        scov = heapq.heappop(scoville) + heapq.heappop(scoville) * 2
+        heapq.heappush(scoville, scov)
+        answer += 1
+
+        if len(scoville) == 1 and scoville[0] < K:
+            return -1
     return answer

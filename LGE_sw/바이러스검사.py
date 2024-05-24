@@ -8,7 +8,7 @@ def InputData():
 
     return N, M, A, B
 
-
+# 슬라이딩 윈도우 알고리즘
 def Find(start) :
     global B
 

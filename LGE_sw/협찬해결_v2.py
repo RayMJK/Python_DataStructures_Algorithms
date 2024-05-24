@@ -7,7 +7,7 @@ def input_data() :
 	return N, D
 
 
-// 다이나믹 프로그래밍 (카데인 알고리즘)
+# 다이나믹 프로그래밍 (카데인 알고리즘)
 def Solve():
 	for i in range(1, len(D)) :
 		D[i] = max(D[i], D[i] + D[i-1])

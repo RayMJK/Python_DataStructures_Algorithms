@@ -4,7 +4,7 @@ sys.setrecursionlimit(100000)
 
 def DFS(x, y):
     visited[x][y] = True
-    directions = [(-1,0), (1,0), (0,1), (0,1)]
+    directions = [(-1,0), (1,0), (0,-1), (0,1)]
     for dx, dy in directions:
         nx, ny = x+dx, y+dy
         if nx < 0 or nx >= n or ny < 0 or ny >=m:

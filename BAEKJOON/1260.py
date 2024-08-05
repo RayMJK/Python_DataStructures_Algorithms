@@ -22,11 +22,11 @@ for i in range(1, m+ 1):
         graph[b].append(a)
 
 # print(graph)
-# {1: [2, 3, 4], 2: [4], 3: [4]}
+# {1: [2, 3, 4], 2: [1, 4], 3: [1, 4], 4: [1, 2, 3]}
 # print(graph[1]) : [2, 3, 4]
 
 reversed_graph = {key : sorted(value, reverse=True) for key, value in graph.items()}
-# print(reversed_graph)
+print(reversed_graph)
 graph = {key : sorted(value) for key, value in graph.items()}
 
 def DFS(graph, start_node):
@@ -38,8 +38,7 @@ def DFS(graph, start_node):
         a = need_to_visit.pop()
         if a not in visted:
             visted.append(a)
-            if a in graph:
-                need_to_visit.extend(graph[a])
+            need_to_visit.extend(graph[a])
     return visted
 
 def BFS(graph, start_node):
@@ -51,8 +50,7 @@ def BFS(graph, start_node):
         a = need_to_visit.pop(0)
         if a not in visted:
             visted.append(a)
-            if a in graph:
-                need_to_visit.extend(graph[a])
+            need_to_visit.extend(graph[a])
 
     return visted
 

@@ -1,46 +1,19 @@
+from collections import deque
 
-graph = dict()
+max_value = 100001
+n, k = map(int, input().split())
 
-n,m,v = map(int, input().split(' '))
+array = [0] * max_value
 
-for i in range(1, m+1):
-    a, b = map(int, input().split(' '))
-    if a not in graph:
-        graph[a] = [b]
-    else:
-        graph[a].append(b)
-    if b not in graph:
-        graph[b] = [a]
-    else:
-        graph[b].append(a)
+def bfs():
+    q = deque([n])
+    while q:
+        now_pos = q.popleft()
+        if now_pos == k:
+            return array[now_pos]
 
-print(graph)
+        for next_pos in (now_pos-1, now_pos+1, 2*now_pos):
+            if 0<= next_pos < max_value and not array[next_pos]:
+                array[next_pos] = array[now_pos] + 1
+                q.append(next_pos)
 
-def DFS(graph, start_node):
-    visited = []
-    need_to_visit = []
-    need_to_visit.append(start_node)
-    while need_to_visit:
-        a = need_to_visit.pop(-1)
-        if a not in visited:
-            visited.append(a)
-            need_to_visit.extend(graph[a])
-    return visited
-
-def BFS(graph, start_node):
-    visited = []
-    need_to_visit=[]
-    need_to_visit.append(start_node)
-
-    while need_to_visit:
-        a = need_to_visit.pop(0)
-        if a not in visited:
-            visited.append(a)
-            need_to_visit.extend(graph[a])
-    return visited
-
-
-
-
-print(DFS(graph, 1))
-print(BFS(graph,1))

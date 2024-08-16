@@ -77,7 +77,10 @@ while True:
         break
     down()
 
-print(m)
+for i in m:
+    for j in i:
+        print(j,end="")
+    print(end='\n')
 '''
     [
         [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 

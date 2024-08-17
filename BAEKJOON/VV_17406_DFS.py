@@ -56,5 +56,14 @@ def dfs(arr, qry):
         qry[i] = 0
 
 dfs(a, [0 for i in range(k)])
-print(ans)
-
+# print(ans)
+'''
+print(convert(a, (3,4,2)))
+[
+    [1, 8, 2, 3, 2, 5], 
+    [3, 2, 3, 7, 2, 6], 
+    [8, 4, 5, 1, 1, 3], 
+    [3, 3, 1, 1, 4, 5], 
+    [9, 2, 1, 4, 3, 1]
+]
+'''

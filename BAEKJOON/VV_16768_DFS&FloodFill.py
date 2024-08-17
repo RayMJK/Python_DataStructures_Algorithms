@@ -1,90 +1,58 @@
-import sys
-sys.setrecursionlimit(1000000)
+N, K = map(int, input().split())
+M = [list(input()) for _ in range(N)]
+ck = [[False for i in range(10)] for _ in range(N)]
+ck2 = [[False for i in range(10)] for _ in range(N)]
+dx, dy = [-1, 0, 1, 0], [0, -1, 0, 1]
 
-n, k = map(int,input().split())
-m = [[]*10 for _ in range(n)]
-visited = [[False]*10 for _ in range(n)]
-visited2 = [[False]*10 for _ in range(n)]
-dx, dy = [-1, 0, 1, 0], [0,-1,0,1]
-
-for i in range(n):
-    a = list(map(int, input()))
-    m[i] = a
-
-'''
-    [    
-         0  1  2  3  4  5  6  7  8  9 
-
-0       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-1       [0, 0, 0, 0, 0, 0, 0, 3, 0, 0], 
-2       [0, 0, 5, 4, 0, 0, 0, 3, 0, 0], 
-3       [1, 0, 5, 4, 5, 0, 2, 2, 3, 0], 
-4       [2, 2, 1, 1, 1, 2, 2, 2, 2, 0], 
-5       [1, 1, 1, 1, 1, 1, 1, 2, 2, 3]
-    
-    ]
-'''
-def DFS(x,y):
-    visited[x][y] = True
+def dfs(x, y):
+    ck[x][y] = True
     count = 1
     for i in range(4):
-        nx,ny = x+dx[i], y+dy[i]
-        if nx<0 or nx>=n or ny<0 or ny>=10:
+        xx, yy = x + dx[i], y + dy[i]
+        if xx < 0 or xx >= N or yy < 0 or yy >= 10:
             continue
-        if visited[nx][ny] == True or m[nx][ny] != m[x][y]:
+        if ck[xx][yy] or M[x][y] != M[xx][yy]:
             continue
-        count += DFS(nx, ny)
+        count += dfs(xx, yy)
     return count
 
-def DFS2(x,y,z):
-    visited2[x][y] = True
-    m[x][y] = 0
+def dfs2(x, y, m):
+    ck2[x][y] = True
+    M[x][y] = '0'
     for i in range(4):
-        nx,ny = x+dx[i], y+dy[i]
-        if nx<0 or nx>=n or ny<0 or ny>=10:
+        xx, yy = x + dx[i], y + dy[i]
+        if xx < 0 or xx >= N or yy < 0 or yy >= 10:
             continue
-        if visited2[nx][ny] == True or m[nx][ny] != z:
+        if ck2[xx][yy] or M[xx][yy] != m:
             continue
-        DFS2(nx, ny, z)
+        dfs2(xx, yy, m)
 
 def down():
     for i in range(10):
         lst = []
-        for j in range(n):
-            if m[j][i] != 0:
-                lst.append(m[j][i])
-                m[j][i] = 0
-        for w in range(n-1, 0, -1):
-            if len(lst) != 0:
-                m[w][i] = lst.pop()
-
-
-
+        for j in range(N):
+            if M[j][i] != '0':
+                lst.append(M[j][i])
+                M[j][i] = '0'
+        for k in range(N-1, 0, -1):
+            if lst:
+                M[k][i] = lst.pop()
 
 while True:
     exist = False
-    visited = [[False]*10 for _ in range(n)]
-    visited2 = [[False]*10 for _ in range(n)]
-    for i in range(n):
+    ck = [[False for i in range(10)] for _ in range(N)]
+    ck2 = [[False for i in range(10)] for _ in range(N)]
+    for i in range(N):
         for j in range(10):
-            if m[i][j] == 0 or visited[i][j] == True:
+            if M[i][j] == '0' or ck[i][j]:
                 continue
-            count = DFS(i,j)
-            if count >= k:
-                DFS2(i,j, m[i][j])
+            count = dfs(i, j)
+            if count >= K:
+                dfs2(i, j, M[i][j])
                 exist = True
-    if exist == False:
+    if not exist:
         break
     down()
 
-print(m)
-'''
-    [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 3, 0, 0], 
-        [0, 0, 5, 4, 0, 0, 0, 3, 0, 0], 
-        [1, 0, 5, 4, 5, 0, 0, 0, 3, 0], 
-        [2, 2, 0, 0, 0, 0, 0, 0, 0, 0], 
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 3]
-    ]
-'''
+for i in M:
+    print(''.join(i))

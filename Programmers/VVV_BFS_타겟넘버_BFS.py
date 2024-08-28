@@ -8,7 +8,7 @@ def solution(numbers, target):
             tmp.append(result[i] + num)
             tmp.append(result[i] - num)
         result = tmp
-    for res in tmp:
+    for res in result:
         if res == target:
             count += 1
 

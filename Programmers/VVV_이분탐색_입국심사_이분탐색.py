@@ -1,25 +1,28 @@
 def solution(n, times):
-    answer = 0
-    # right는 가장 비효율적으로 심사했을 때 걸리는 시간
-    # 가장 긴 심사시간이 소요되는 심사관에게 n 명 모두 심사받는 경우이다.
+    # 가능한 최솟값과 최댓값을 left와 right로 설정
     left = 1
     right = max(times) * n
+
+    # 이분탐색이니 left가 right 이하인 동안
     while left <= right:
-        mid = (left + right) // 2
+        # 가운데 : 더하고 2로 나눈 몫(정수)
+        mid = (left+right)//2
+        # 심사한 사람 수
         people = 0
+
         for time in times:
-            # people 은 모든 심사관들이 mid분 동안 심사한 사람의 수
-            people += mid // time
-            # 모든 심사관을 거치지 않아도 mid분 동안 n명 이상의 심사를 할 수 있다면 반복문을 나간다.
-            # if people >= n:
-            #     break
+            # 해당 심사대에서 주어진 시간동안 심사 받은 수 더하기
+            people += mid//time
 
-        # 심사한 사람의 수가 심사 받아야할 사람의 수(n)보다 많거나 같은 경우
+            # 중간에라도 이미 n명보다 많이 심사했다면 break
+            if people >= n:
+                break
+        # n명 초과 심사했다면, 시간이 너무 많은 것
+        # 딱 n명 심사했더라도, 시간이 남을 가능성 있음
         if people >= n:
-
-            right = mid - 1
-        # 심사한 사람의 수가 심사 받아야할 사람의 수(n)보다 적은 경우
-        elif people < n:
+            answer = mid
+            right = mid -1
+        # n명 미만 심사했다면, 시간이 너무 부족하다
+        else :
             left = mid + 1
-    answer = left
     return answer

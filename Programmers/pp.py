@@ -1,65 +1,68 @@
-def solution(inp_str):
-    from string import ascii_lowercase
-    from string import ascii_uppercase
-
-    lower_alpha = list(ascii_lowercase)
-    upper_alpha = list(ascii_uppercase)
-    num = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    char = '~!@#$%^&*'
-    answer = []
-    kind = []
-    count = 0
-    pw = list(set(inp_str))
-    pw.sort()
-    count_dict = dict()
-    stack = []
-    stack.append(inp_str[0])
-    print(inp_str)
-    for i in range(1,len(inp_str)):
-        if inp_str[i] == stack[-1]:
-            count += 1
-            stack.append(inp_str[i])
-            if count == 4:
-                answer.append(4)
-        else:
-            count = 1
-            stack.append(inp_str[i])
-    print(stack)
-    for i in inp_str:
-        if count_dict.get(i) == None:
-            count_dict[i] = 1
-        else:
-            count_dict[i] += 1
-    max = -1
-    for key in count_dict:
-        if count_dict[key] > max:
-            max = count_dict[key]
-
-    if max >= 5:
-        answer.append(5)
-
-    if len(inp_str) < 8 or len(inp_str) > 15:
-        answer.append(1)
-    for i in pw:
-        if i in lower_alpha:
-            kind.append(2)
-        elif i in upper_alpha:
-            kind.append(1)
-        elif i in num:
-            kind.append(3)
-        elif i in char:
-            kind.append(4)
-        else:
-            kind.append(5)
-
-    if 5 in kind:
-        answer.append(2)
-        kind.remove(5)
-        if len(kind) < 3:
-            answer.append(3)
-
-    return sorted(answer)
+import sys
+from collections import deque
 
 
-inp_str = "aaaaZZZZ)"
-print(solution(inp_str))
+def Input_Data():
+    readl = sys.stdin.readline
+    W, H = map(int, readl().split())
+    sw, sh, ew, eh = map(int, readl().split())
+    map_maze = [[0] + list(map(int, readl().strip())) + [0] if 1 <= h <= H else [0] * (W + 2) for h in range(H + 2)]
+    return W, H, sw, sh, ew, eh, map_maze
+
+
+sol = -1
+# 입력 받는 부분
+W, H, sw, sh, ew, eh, map_maze = Input_Data()
+
+# 여기서부터 작성
+visited = [[False] * (W + 2) for _ in range(H + 2)]
+'''
+print(visited)
+[
+    [False, False, False, False, False, False, False, False], 
+    [False, False, False, False, False, False, False, False], 
+    [False, False, False, False, False, False, False, False], 
+    [False, False, False, False, False, False, False, False], 
+    [False, False, False, False, False, False, False, False], 
+    [False, False, False, False, False, False, False, False], 
+    [False, False, False, False, False, False, False, False]
+]
+'''
+'''
+print(map_maze)
+[
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+    [0, 0, 0, 0, 0, 0, 1, 1, 1, 0], 
+    [0, 1, 0, 1, 1, 0, 0, 1, 1, 0], 
+    [0, 1, 0, 1, 1, 1, 0, 0, 1, 0], 
+    [0, 1, 0, 1, 1, 1, 1, 0, 1, 0], 
+    [0, 1, 0, 0, 0, 0, 0, 0, 1, 0], 
+    [0, 1, 1, 1, 1, 1, 1, 1, 1, 0], 
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+'''
+directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+
+def bfs(map_maze, visited, sw, sh, ew, eh):
+    q = deque()
+    q.append((sh, sw))
+    while q:
+        x, y = q.popleft()
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if nx < 1 or nx >= H or ny < 1 or ny >= W:
+                continue
+            if visited[nx][ny] == True or map_maze[nx][ny] == 1:
+                continue
+            visited[nx][ny] = True
+            map_maze[nx][ny] = map_maze[x][y] + 1
+            q.append((nx, ny))
+    return map_maze[eh][ew]
+
+
+sol = bfs(map_maze, visited, sw, sh, ew, eh)
+
+# 출력하는 부분
+print(sol)

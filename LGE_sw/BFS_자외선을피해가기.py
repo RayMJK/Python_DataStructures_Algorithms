@@ -23,7 +23,7 @@ N, map_uv = Input_Data()
 
 # 여기서부터 작성
 directions = [(-1,0), (1,0), (0,-1), (0,1)]
-chk = [[999]*(N+2) for _ in range(N+2)]
+chk = [[90000]*(N+2) for _ in range(N+2)]
 chk[1][1] = map_uv[1][1]
 def bfs():
 	q = deque()

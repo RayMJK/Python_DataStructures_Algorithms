@@ -30,7 +30,7 @@ def dfs_multi(s, remain):
     for n in range(s, N):
         if dfs_multi(n+1, remain-num[n]):
             return True
-
+    return False
 sol = []
 # 입력 받는 부분
 readl = sys.stdin.readline

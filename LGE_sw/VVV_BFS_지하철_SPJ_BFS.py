@@ -55,6 +55,10 @@ N, M, matrix = Input_Data()
 sol, prev = bfs()
 route = get_route()
 
+'''
+prev : [0, 0, 1, 1, 1, 3]
+'''
+
 # 출력하는 부분
 print(sol)
 print(*route)

@@ -26,6 +26,7 @@ def Dice2(n, s):
     for i in range(s, 6+1):
         dice[n] = i
         Dice2(n+1, i)
+        # Dice2(n+1, i+1) -> 그냥 조합 일때.
 
 def Dice3(n):
     # 순열

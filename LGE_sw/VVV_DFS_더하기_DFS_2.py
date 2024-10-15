@@ -5,22 +5,6 @@ def Input_Data():
     num = list(map(int, readl().split()))
     return N, K, num
 
-
-def dfs_binary(n, remain):
-
-    if remain == 0:
-        return True
-    if remain < 0 :
-        return False
-    if n>=N :
-        return False
-    if dfs_binary(n+1, remain-num[n]):
-        return True
-    if dfs_binary(n+1, remain):
-        return True
-
-    return False
-
 def dfs_multi(s, remain):
 
     if remain == 0:
@@ -31,6 +15,7 @@ def dfs_multi(s, remain):
         if dfs_multi(n+1, remain-num[n]):
             return True
     return False
+
 sol = []
 # 입력 받는 부분
 readl = sys.stdin.readline
@@ -39,7 +24,6 @@ T = int(readl())
 for _ in range(T):
     N, K, num = Input_Data()
     # 여기서부터 입력
-    # result = dfs_binary(0, K) # 이진 선택 (중복 순열)
     result = dfs_multi(0, K) # 조합
 
     if result == True:

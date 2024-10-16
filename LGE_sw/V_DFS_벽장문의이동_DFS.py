@@ -8,7 +8,11 @@ def Input_Data():
     S = int(readl())
     seq = [int(readl()) for _ in range(S)]
     return N, A, B, S, seq
-
+'''
+s : 지금 처리해야 할 순서 번호
+left, right : 열려있는 책장 번호
+sum_move : 문 이동 누적 횟수
+'''
 
 def DFS(s, left, right, sum_move):
     global sol

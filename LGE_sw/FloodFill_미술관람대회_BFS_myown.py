@@ -74,7 +74,7 @@ def solve_rg():
     global visited_rg
     for r in range(1, N + 1):
         for c in range(1, N + 1):
-            if map_nor_pig[r][c] == "G":
+            if map_nor_pig2[r][c] == "G":
                 map_nor_pig2[r][c] = "R"
 
     for r in range(1, N + 1):

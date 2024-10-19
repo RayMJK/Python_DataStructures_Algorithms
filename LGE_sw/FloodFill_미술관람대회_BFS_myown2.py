@@ -59,7 +59,10 @@ def bfs_rg(r, c):
 
 def solve():
     cnt = 0
+    cnt_rg = 0
     global visited
+    global visited_rg
+
     for r in range(1, N + 1):
         for c in range(1, N + 1):
             if visited[r][c] == True:
@@ -67,11 +70,6 @@ def solve():
             bfs(r, c)
             cnt += 1
 
-    return cnt
-
-def solve_rg():
-    cnt_rg = 0
-    global visited_rg
     for r in range(1, N + 1):
         for c in range(1, N + 1):
             if map_nor_pig2[r][c] == "G":
@@ -84,28 +82,52 @@ def solve_rg():
             bfs_rg(r, c)
             cnt_rg += 1
 
-    return cnt_rg
+    return cnt, cnt_rg
 
 # 입력받는 부분
 N, map_nor_pig = Input_Data()
 map_nor_pig2 = map_nor_pig
 
+"""
+[
+    [0, 0, 0, 0, 0, 0, 0], 
+    [0, 'R', 'R', 'R', 'B', 'B', 0], 
+    [0, 'G', 'G', 'B', 'B', 'B', 0], 
+    [0, 'B', 'B', 'B', 'R', 'R', 0], 
+    [0, 'B', 'B', 'R', 'R', 'R', 0], 
+    [0, 'R', 'R', 'R', 'R', 'R', 0], 
+    [0, 0, 0, 0, 0, 0, 0]
+]
+[
+    [0, 0, 0, 0, 0, 0, 0], 
+    [0, 'R', 'R', 'R', 'B', 'B', 0], 
+    [0, 'R', 'R', 'B', 'B', 'B', 0], 
+    [0, 'B', 'B', 'B', 'R', 'R', 0], 
+    [0, 'B', 'B', 'R', 'R', 'R', 0], 
+    [0, 'R', 'R', 'R', 'R', 'R', 0], 
+    [0, 0, 0, 0, 0, 0, 0]
+]
+
+"""
+
 # 여기서부터 작성
 visited = [[False] * (N + 2) for _ in range(N + 2)]
 visited_rg = [[False] * (N + 2) for _ in range(N + 2)]
-sol_nor_pig = solve()
-sol_rg_pig = solve_rg()
+sol_nor_pig, sol_rg_pig = solve()
+# sol_rg_pig = solve_rg()
 # 출력하는 부분
 print(sol_nor_pig, sol_rg_pig)
 
 '''
 [
-	[0, 0, 0, 0, 0, 0, 0], 
-	[0, 'R', 'R', 'R', 'B', 'B', 0], 
-	[0, 'G', 'G', 'B', 'B', 'B', 0], 
-	[0, 'B', 'B', 'B', 'R', 'R', 0], 
-	[0, 'B', 'B', 'R', 'R', 'R', 0], 
-	[0, 'R', 'R', 'R', 'R', 'R', 0],
-	[0, 0, 0, 0, 0, 0, 0]
- ]
+    [0, 0, 0, 0, 0, 0, 0], 
+    [0, 'R', 'R', 'R', 'B', 'B', 0], 
+    [0, 'R', 'R', 'B', 'B', 'B', 0], 
+    [0, 'B', 'B', 'B', 'R', 'R', 0], 
+    [0, 'B', 'B', 'R', 'R', 'R', 0], 
+    [0, 'R', 'R', 'R', 'R', 'R', 0], 
+    [0, 0, 0, 0, 0, 0, 0]
+]
+
+
 '''

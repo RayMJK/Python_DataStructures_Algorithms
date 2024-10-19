@@ -71,7 +71,6 @@ def solve():
 
 def solve_rg():
     cnt_rg = 0
-    global visited
     global visited_rg
     for r in range(1, N + 1):
         for c in range(1, N + 1):
@@ -87,9 +86,6 @@ def solve_rg():
 
     return cnt_rg
 
-
-# sol_nor_pig, sol_rg_pig = -1, -1
-# sol_rg_pig = -1
 # 입력받는 부분
 N, map_nor_pig = Input_Data()
 map_nor_pig2 = map_nor_pig

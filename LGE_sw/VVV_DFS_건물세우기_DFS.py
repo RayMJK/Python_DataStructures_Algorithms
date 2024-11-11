@@ -16,8 +16,9 @@ def dfs(n, sum_cost):
     if sol <= sum_cost:
         return
     if n > N:
-        sol = sum_cost
-        return
+        if sol > sum_cost:
+            sol = sum_cost
+            return
 
     for i in range(1, N+1):
         if visited[i] == True:

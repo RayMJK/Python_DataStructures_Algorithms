@@ -14,14 +14,12 @@ def dfs_binary(n, remain): # n번 자연수 포함 여부 -> O, X
     if n >= N:
         return False
 
-    if dfs_binary(n+1, remain-num[n]):
+    if dfs_binary(n+1, remain-num[n]) == True:
         return True
-    if dfs_binary(n+1, remain):
+    if dfs_binary(n+1, remain) == True:
         return True
 
     return False
-
-
 
 sol = []
 # 입력 받는 부분

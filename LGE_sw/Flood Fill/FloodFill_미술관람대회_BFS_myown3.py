@@ -31,8 +31,6 @@ def bfs(map_art, x, y):
             q.append((nx,ny))
             map_art[nx][ny] = 0
 
-
-
 def solve(map_art):
     cnt = 0
     for r in range(1, N+1):

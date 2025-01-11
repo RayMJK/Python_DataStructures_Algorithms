@@ -12,20 +12,19 @@ matrix[a][b] : a번 건물을 b번땅에 짓는 비용
 """
 
 def dfs(n, sum_cost):
-    global sol
-    if sol <= sum_cost:
-        return
-    if n > N:
-        if sol > sum_cost:
-            sol = sum_cost
-            return
+	global sol
+	if sol <= sum_cost:
+		return
+	if n > N:
+		sol = sum_cost
+		return
 
-    for i in range(1, N+1):
-        if visited[i] == True:
-            continue
-        visited[i] = True
-        dfs(n+1, sum_cost + matrix[n][i])
-        visited[i] = False
+	for i in range(1, N+1):
+		if visited[i] == True:
+			continue
+		visited[i] = True
+		dfs(n+1, sum_cost+matrix[n][i])
+		visited[i] = False
 
 def solve():
     global sol

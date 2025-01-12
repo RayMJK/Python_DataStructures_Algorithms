@@ -16,10 +16,9 @@ def solve():
 			rs = pos[s2] + jump
 			re = pos[s2] + 2*jump
 			lower = bisect.bisect_left(pos, rs)
-			if lower == N or pos[lower] > re:
-				continue
-			upper = bisect.bisect_right(pos, re)
-			cnt += upper-lower
+			if lower != N and pos[lower] <= re:
+				upper = bisect.bisect_right(pos, re)
+				cnt += upper-lower
 	return cnt
 
 
